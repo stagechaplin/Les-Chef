@@ -69,4 +69,15 @@ public class MainController {
 
 //    마이페이지(상훈) 경로
 
+
+
+
+
+
+
+//
+//    @PostMapping("/login")
+//    public String signUp(){
+//
+//    }
 }
