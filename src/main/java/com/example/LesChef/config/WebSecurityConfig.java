@@ -2,6 +2,7 @@ package com.example.LesChef.config;
 
 import com.example.LesChef.Repository.CustomerRepository;
 import com.example.LesChef.entity.Customer;
+import com.example.LesChef.service.CustomerDetailService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,11 +43,13 @@ public class WebSecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize -> authorize
+                .authorizeHttpRequests(authorize -> authorize // 로그인 없이 이동 가능한 메서드 및 페이지
                         .requestMatchers("/signup","findId","/findPwd").permitAll()
                         .requestMatchers("/main", "/List/**","/NoticeBoardMain")
                         .permitAll().anyRequest().authenticated()
                 )
+
+                // 로그인 메서드
                 .formLogin(login -> login
                         .loginPage("/main").permitAll()
                         .loginProcessingUrl("/login")

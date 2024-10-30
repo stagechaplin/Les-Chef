@@ -2,6 +2,7 @@ package com.example.LesChef.controller;
 
 import com.example.LesChef.Repository.CustomerRepository;
 import com.example.LesChef.dto.AddCustomerRequest;
+import com.example.LesChef.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,11 @@ public class CustomerApiController {
     //기존 아이디 존재 여부 확인
     @PostMapping("/signup")
     public String signup(AddCustomerRequest request){
-        if(CustomerRepository.findById(request.getId()).orElse(null) != null){
+        if(customerRepository.findById(request.getId()).orElse(null) != null){
             log.info("로그인 실패");
             return "redirect:/main";
         }
-        CustomerService.save(request);
+        customerService.save(request);
         log.info("회원가입 성공");
         return "redirect:/main";
     }

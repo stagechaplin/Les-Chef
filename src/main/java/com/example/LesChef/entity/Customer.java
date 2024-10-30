@@ -15,10 +15,11 @@ import java.util.List;
 
 @Table(name="Customer") //user 테이블 생성
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
-@Getter
-@Setter
-public class Customer implements UserDetails {
+@Entity // 현재 클래스를 엔티티로 선언
+@Getter // 엔티티를 받고
+@Setter //        수정
+
+public class Customer implements UserDetails { //UserDetails를
     @Id
     @Column(name = "id")
     private String id;
